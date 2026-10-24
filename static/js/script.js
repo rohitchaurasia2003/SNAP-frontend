@@ -34,5 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(styleTag);
 
-    console.log('SnapClass Premium Landing Page Active');
+    console.log('Snap Premium Landing Page Active');
 });

@@ -1,26 +1,63 @@
-# SNAP
+# SNAP Frontend
 
-SNAP is a Flask-powered landing page for an AI-assisted classroom attendance product. It introduces the product’s features and teacher workflow, and links visitors to the separate SNAP attendance application.
+SNAP Frontend is the marketing and landing-page application for an AI-powered classroom attendance system. It presents the product value, workflow, and feature set to teachers and administrators while linking them to the separate SNAP attendance application.
+
+## Overview
+
+This repository contains the public-facing Flask site for SNAP. The interface highlights the product’s AI-driven attendance experience, including face recognition, voice-based verification, QR-powered enrollment, and classroom workflow steps.
+
+> The main attendance application itself is hosted separately and is not included in this repository.
 
 ## Features
 
-- Responsive landing page with product overview, feature highlights, and teacher workflow.
-- Flask serves the page and its static assets.
-- Screenshots and logos are stored locally in `static/img/`.
-- Links to the SNAP attendance application hosted on Streamlit.
+- Responsive landing page for the SNAP product
+- Teacher-focused product messaging and UI sections
+- Feature cards for AI face analysis, voice verification, and QR-driven class setup
+- Guided classroom workflow highlighting the attendance journey
+- Static assets and screenshots stored locally under `static/img/`
+- CTA links to the live SNAP attendance app
 
-> The attendance application itself is hosted separately and is not part of this repository.
+## Tech Stack
+
+- Python 3.10+
+- Flask
+- Jinja templates
+- HTML/CSS/JavaScript
+- Vercel deployment configuration
+
+## Project Structure
+
+```text
+.
+├── app.py                 # Flask app entry point
+├── vercel.json            # Vercel deployment configuration
+├── requirements.txt       # Python dependencies
+├── static/
+│   ├── css/
+│   │   └── style.css      # Main styling and responsive layout
+│   └── img/
+│       ├── demo/          # Product screenshots and workflow visuals
+│       ├── app_logo.png
+│       └── logo.png
+├── templates/
+│   └── index.html         # Landing page template
+└── README.md              # Project documentation
+```
 
 ## Requirements
 
 - Python 3.10 or newer
 - pip
 
-Dependencies are listed in [`requirements.txt`](./requirements.txt).
+Install dependencies from:
 
-## Run locally
+```bash
+pip install -r requirements.txt
+```
 
-From the project root, create and activate a virtual environment, install dependencies, and start the Flask app:
+## Run Locally
+
+From the project root, run:
 
 ```bash
 python3 -m venv .venv
@@ -29,35 +66,39 @@ python -m pip install -r requirements.txt
 python app.py
 ```
 
-On Windows PowerShell, activate the environment with:
+On Windows PowerShell:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
+python app.py
 ```
 
-Open [http://127.0.0.1:5002](http://127.0.0.1:5002) in your browser.
-
-## Project structure
+Then open:
 
 ```text
-.
-├── app.py                  # Flask application and home page route
-├── requirements.txt        # Python dependencies
-├── static/
-│   ├── css/
-│   │   └── style.css       # Page styles and responsive layout
-│   └── img/
-│       ├── demo/           # Product and workflow screenshots
-│       ├── app_logo.png
-│       └── logo.png
-└── templates/
-    └── index.html          # Landing page template
+http://127.0.0.1:5002
 ```
 
-## Configuration
+## Deployment
 
-The development entry point in `app.py` serves the site on port `5002`. The external attendance application URL is currently set in `templates/index.html`.
+This project is configured for deployment on Vercel using `vercel.json` and the Flask app entry point in `app.py`.
+
+The relevant deployment setup is:
+
+```json
+{
+  "version": 2,
+  "builds": [{ "src": "app.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "app.py" }]
+}
+```
+
+## Configuration Notes
+
+- The Flask app runs on port `5002` in local development.
+- The live attendance app URL is referenced in `templates/index.html`.
+- If you want to update the external product URL, edit the CTA links in the landing page template.
 
 ## License
 
-No license is specified in this repository. Add a license file before redistributing the project if one is intended.
+No license is currently specified for this project. If you plan to distribute or reuse it publicly, add an appropriate license file.
